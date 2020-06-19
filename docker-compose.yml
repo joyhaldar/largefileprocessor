@@ -1,0 +1,39 @@
+version: "3.2"
+
+services:
+ # container name
+  postgres:
+   # build the image from Dockerfile
+    build:
+      context: .
+
+    # bind mount volume for Postgres data
+    volumes:
+     - .:/var/lib/postgresql/data
+     - .:/var/www/html
+
+    # open port so host machine can access
+    ports:
+     - "5432:5432"
+
+    # configure Postgres environment variables
+    environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_DB=postgres
+     - POSTGRES_PASSWORD=postgres
+    networks:
+      node_net:
+        ipv4_address: 172.28.1.4
+
+networks:
+  node_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+        
+volumes:
+  pg-data:
+     external: true
+  python-app:
+     external: true
