@@ -58,6 +58,9 @@ Details of all the tables and their schema, [with commands to recreate them] (No
                    md5 uuid , 
                    product varchar(255) 
                   );
+                  
+      Sample Data:
+        https://user-images.githubusercontent.com/18376158/85154383-013e4f80-b275-11ea-9689-4f22a9015901.png
                 
   'products':
     This is the target table. The data from the staging table is put into this table using an update/insert script in the ingestion         program. This table is never truncated.
@@ -77,6 +80,9 @@ Details of all the tables and their schema, [with commands to recreate them] (No
                    product varchar(255),
                    PRIMARY KEY (sku, description)
                   );
+                  
+      Sample Data:
+        https://user-images.githubusercontent.com/18376158/85154246-db18af80-b274-11ea-8908-19c2b0fbe2e4.png
 
   'products_agg':
     This is the aggregate table which uses 'products' table as input to create a count of products by name.
