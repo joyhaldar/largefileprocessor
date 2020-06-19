@@ -19,7 +19,7 @@ Steps to Create the tables:
 
 1) Open a new terminal/GitBash terminal.
 
-2) docker exec py_postg_postgres_1 -it bash
+2) docker exec largefileprocessor_postgres_1 -it bash
 
 3) cd /var/www/html
 
@@ -28,7 +28,7 @@ Steps to Create the tables:
 
 Steps to query the tables:
 
-1) docker exec py_postg_postgres_1 -it bash
+1) docker exec largefileprocessor_postgres_1 -it bash
 
 2) psql -U postgres -d postgres.
 
@@ -43,7 +43,7 @@ Steps to query the tables:
 
 Steps to run the ingestion program:
 
-1) docker exec py_postg_postgres_1 -it bash
+1) docker exec largefileprocessor_postgres_1 -it bash
 
 2) cd /var/www/html
 
