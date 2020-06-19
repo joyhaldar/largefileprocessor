@@ -89,6 +89,9 @@ Details of all the tables and their schema, [with commands to recreate them] (No
                  name varchar(255) ,
                  number_of_products int
                  );
+                 
+    Sample Data:
+      ![image](https://user-images.githubusercontent.com/18376158/85153975-79f0dc00-b274-11ea-9121-c466efeaec98.png)
     
     
     
