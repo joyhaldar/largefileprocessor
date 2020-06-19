@@ -27,6 +27,7 @@ Steps to query the tables:
 4) select * from products;  (Target table)
 5) select * from products_agg;  (Aggregated table with Names and Number of Products)
 
+
 Steps to run the ingestion program:
 
 1) docker exec largefileprocessor_postgres_1 -it bash
