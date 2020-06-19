@@ -78,17 +78,17 @@ Details of all the tables and their schema, [with commands to recreate them] (No
                    PRIMARY KEY (sku, description)
                   );
 
-'products_agg':
-  This is the aggregate table which uses 'products' table as input to create a count of products by name.
-  
-  Column Details:
-    1)name: takes the 'name' column from 'products' as data input
-    2)number_of_products: takes the count of 'product' column in 'products' table and groups by 'name'.
-    
-  CREATE TABLE products_agg (
-               name varchar(255) ,
-               number_of_products int
-               );
+  'products_agg':
+    This is the aggregate table which uses 'products' table as input to create a count of products by name.
+
+    Column Details:
+      1)name: takes the 'name' column from 'products' as data input
+      2)number_of_products: takes the count of 'product' column in 'products' table and groups by 'name'.
+
+    CREATE TABLE products_agg (
+                 name varchar(255) ,
+                 number_of_products int
+                 );
     
     
     
