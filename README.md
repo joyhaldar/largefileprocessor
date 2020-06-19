@@ -2,16 +2,17 @@
 This is an assignment for the Data Engineer Position at Postman.
 
 
-Steps to setup (I used GitBash on Windows to execute the below commands):
+Steps to setup the docker image(I used GitBash on Windows to execute the below commands):
 
 1) git clone https://github.com/joyhaldar/largefileprocessor.git
 2) cd largefileprocessor
-3) docker-compose build
-4) docker-compose up -d
-5) Don't close the terminal id not using '-d' flag in above command.
+3) Please place the csv file 'products.csv' in this folder.
+4) docker-compose build
+5) docker-compose up -d
+6) Don't close the terminal id not using '-d' flag in above command.
 
 
-Steps to Create the tables:
+Steps to Create the tables (postgres and python inside docker):
 
 1) Open a new terminal/GitBash terminal.
 2) docker exec largefileprocessor_postgres_1 -it bash
