@@ -76,3 +76,23 @@ Details of all the tables and their schema, [with commands to recreate them] (No
                  product varchar(255),
                  PRIMARY KEY (sku, description)
                 );
+                
+'products_agg':
+  This is the aggregate table which uses 'products' table as input to create a count of products by name.
+  
+  Column Details:
+    name: takes the 'name' column from 'products' as data input
+    number_of_products: takes the count of 'product' column in 'products' table and groups by 'name'.
+    
+    
+    
+What was done from Points to Achieve:
+  1) Implemented concepts of OOPS:
+      Different functions are defined for each operation (eg. truncate table, bulk load, inser/update) and they are called in main.
+      
+  2) Support regular non-blocking parallel ingestion for scale:
+      This program uses the ,multiprocessing' class in python, which i used to chunk the csv file into equal pieces and give input to         each core of the processor which would bulk load it into the staging table simultaneously, thus reducing ingestion time. The             program also dynamically finds out the number of cores on a cpu using 'mp.cpu_count()'.
+      
+   3) All product details in a single table 'products'. The 'products_stg' is used as an intermediate to use ELT principle which is           found useful for large data.
+   
+   4) Aggregated table named 'products_agg' created with required columns.
