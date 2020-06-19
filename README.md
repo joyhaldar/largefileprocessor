@@ -38,13 +38,41 @@ Steps to run the ingestion program:
 
 
 
+Details of all the tables and their schema, [with commands to recreate them] (Note: The Tables have already been created in 'Steps to Create the tables' above)
 
+'products_stg':
+  This is the staging table. The csv file is parallely processed and bulk loaded into this table and it has no constraints applied on     it.
 
+  Column Details:
+    name: mapped to 'name' in csv file.
+    sku: mapped to 'sku' in csv file.
+    description: mapped to 'description' in csv file.
+    md5: an md5 hashcode created in script on 'sku' and 'description' (which was the unique combination) to create a unique code for              each unique value. This column is used for joining the staging and target tables during the update/insert process as it less in          size and is always unique based on th condition.
+    product: copy of the 'sku' column, as 'sku' is part of the PK, this column would be used for updates.
+    
+    CREATE TABLE products_stg (
+                 name varchar(255) ,
+                 sku varchar(255) ,
+                 description varchar(255) ,
+                 md5 uuid , 
+                 product varchar(255) 
+                );
+                
+'products':
+  This is the target table. The data from the staging table is put into this table using an update/insert script in the ingestion         program. This table is never truncated.
 
-
-
-
-
-
-
-
+  Column Details:
+    name: mapped to 'name' in 'products_stg'.
+    sku: mapped to 'sku' in 'products_stg'.
+    description: mapped to 'description' in 'products_stg'.
+    md5: mapped to 'md5' in 'products_stg'.
+    product: mapped to 'product' in 'products_stg'.
+    
+    CREATE TABLE products (
+                 name varchar(255) ,
+                 sku varchar(255) NOT NULL,
+                 description varchar(255) NOT NULL,
+                 md5 uuid NOT NULL,
+                 product varchar(255),
+                 PRIMARY KEY (sku, description)
+                );
