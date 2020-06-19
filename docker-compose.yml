@@ -32,8 +32,8 @@ networks:
       config:
         - subnet: 172.28.0.0/16
         
-volumes:
-  pg-data:
-     external: true
-  python-app:
-     external: true
+#volumes:
+#  pg-data:
+#     external: true
+#  python-app:
+#     external: true
