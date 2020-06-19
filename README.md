@@ -91,8 +91,16 @@ What was done from Points to Achieve:
       Different functions are defined for each operation (eg. truncate table, bulk load, inser/update) and they are called in main.
       
   2) Support regular non-blocking parallel ingestion for scale:
-      This program uses the ,multiprocessing' class in python, which i used to chunk the csv file into equal pieces and give input to         each core of the processor which would bulk load it into the staging table simultaneously, thus reducing ingestion time. The             program also dynamically finds out the number of cores on a cpu using 'mp.cpu_count()'.
+      a) This program uses the ,multiprocessing' class in python, which i used to chunk the csv file into equal pieces and give input to          each core of the processor which would bulk load it into the staging table simultaneously, thus reducing ingestion time. The            program also dynamically finds out the number of cores on a cpu using 'mp.cpu_count()'.
+      b) Also, for scale, I used a column 'md5' that stores md5 hash of the PK, it is much lower in size due to the datatype 'uuid' and          thus results in faster joins.
       
    3) All product details in a single table 'products'. The 'products_stg' is used as an intermediate to use ELT principle which is           found useful for large data.
    
    4) Aggregated table named 'products_agg' created with required columns.
+
+
+What would I do to improve if given more days:
+
+  1) Figure out a way/condition to disect the data in staging and insert them parallely into target. I tried using the process_id as a        column based on the number of subprocesses, but insertion in the target table simulataneously was causing a lock and multiplying        insertion time.
+  
+  2) Create a unique numeric column based on the PK and use it as the join codition because 'int' datatype takes only 4 bytes in              postgresql. I tried, but due mutiprocessing the chunks, a value in each chunk had an id matching to a value in another chunk.
