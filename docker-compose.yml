@@ -9,7 +9,7 @@ services:
 
     # bind mount volume for Postgres data
     volumes:
-     - .:/var/lib/postgresql/data
+     #- .:/var/lib/postgresql/data
      - .:/var/www/html
 
     # open port so host machine can access
