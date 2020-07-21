@@ -1,5 +1,5 @@
 # largefileprocessor
-This is an assignment for the Data Engineer Position at Postman.
+This is a program to parallely process data to inrcrease speed.
 
 
   Steps to setup the docker image(I used GitBash on Windows to execute the below commands):
@@ -101,7 +101,7 @@ Details of all the tables and their schema, [with commands to recreate them] (No
     
     
     
-What was done from Points to Achieve:
+What was done:
   1) Implemented concepts of OOPS:
       Different functions are defined for each operation (eg. truncate table, bulk load, inser/update) and they are called in main.
       
@@ -114,8 +114,3 @@ What was done from Points to Achieve:
    4) Aggregated table named 'products_agg' created with required columns.
 
 
-What would I do to improve if given more days:
-
-  1) Figure out a way/condition to disect the data in staging and insert them parallely into target. I tried using the process_id as a        column based on the number of subprocesses, but insertion in the target table simulataneously was causing a lock and multiplying        insertion time.
-  
-  2) Create a unique numeric column based on the PK and use it as the join codition because 'int' datatype takes only 4 bytes in              postgresql. I tried, but due mutiprocessing the chunks, a value in each chunk had an id matching to a value in another chunk.
